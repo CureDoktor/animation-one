@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <style>
+      body {
+        background: rgb(0, 0, 0);
+        overflow: hidden;
+      }
+      .work2 {
+        width: 100%;
+        height: 1730px;
+      }
+      .gallery_box {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotateX(0deg);
+        transform-style: preserve-3d;
+      }
+      .gallery_box_outer {
+        width: 300px;
+        height: 200px;
+        position: relative;
+        transform: perspective(1000px);
+        transform-style: preserve-3d;
+      }
+      .gallery_box_in {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-position: center center;
+        background-size: cover;
+      }
+      .gallery_box_in {
+        display: flex;
+        justify-content: center;
+        color: white;
+        background-color: rgb(17, 17, 17);
+        transition: 0.3s;
+      }
+      .gallery_box_in:hover {
+        cursor: pointer;
+      }
+      .gallery_box_in h2 {
+        font-size: 20px;
+        line-height: 20px;
+        padding: 0px;
+        margin: 5px;
+        margin-bottom: 20px;
+      }
+      .gallery_box_in:hover {
+        box-shadow: 0 0 15px #fffd;
+      }
+      .gallery_box_in p {
+        position: relative;
+        line-height: 15px;
+        font-size: 10px;
+        padding: 5px;
+      }
+      .gallery_box_in img {
+        width: 160px;
+        height: 200px;
+        margin-right: auto;
+      }
+      .gallery_box_in:nth-child(1) {
+        transform: rotateY(0deg) translateZ(450px);
+      }
+      .gallery_box_in:nth-child(2) {
+        transform: rotateY(72deg) translateZ(450px);
+      }
+      .gallery_box_in:nth-child(3) {
+        transform: rotateY(144deg) translateZ(450px);
+      }
+      .gallery_box_in:nth-child(4) {
+        transform: rotateY(216deg) translateZ(450px);
+      }
+      .gallery_box_in:nth-child(5) {
+        transform: rotateY(288deg) translateZ(450px);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="work2">
+      <div class="gallery_box">
+        <div class="gallery_box_outer">
+          <div class="gallery_box_in">
+            <div>
+              <img
+                src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                alt=""
+              />
+            </div>
+            <div>
+              <h2>Career Opportunities
+              </h2>
+              <p>
+                Vivint offers outstanding career growth and advancement opportunities within a rapidly growing smart home industry.
+
+              </p>
+            </div>
+          </div>
+          <div class="gallery_box_in">
+            <img
+              src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""
+            />
+            <div>
+              <h2>Competitive Compensation
+              </h2>
+              <p>
+                Benefit from a competitive compensation model with performance-based bonuses and commissions that reward your hard work.
+
+              </p>
+            </div>
+          </div>
+          <div class="gallery_box_in">
+            <img
+              src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""
+            />
+            <div>
+              <h2>⁠Strong Network
+              </h2>
+              <p>
+                Become part of a strong network of dedicated and successful colleagues who support and inspire each other.
+
+
+              </p>
+            </div>
+          </div>
+          <div class="gallery_box_in">
+            <img
+              src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              alt=""
+            />
+            <div>
+              <h2>Cutting-Edge Technology
+              </h2>
+              <p>
+                Utilize cutting-edge technology and tools that help you work more efficiently and productively.
+
+              </p>
+            </div>
+          </div>
+          <div class="gallery_box_in">
+            <div>
+              <img
+                src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                alt=""
+              />
+            </div>
+            <div>
+              <h2>⁠Personal Development
+              </h2>
+              <p>
+                Develop personally through regular feedback and coaching to maximize your strengths and minimize weaknesses.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".gallery_box",
+            start: "top center-=100vh",
+            end: "bottom+=440vh center-=395vh",
+            scrub: 1,
+            pin: true,
+            markers: false,
+            scroller: document.body, // Use the body's scroll position
+          },
+        });
+
+        tl.to(".gallery_box_outer", {
+          duration: 10,
+          rotateY: -288,
+          ease: "none",
+        });
+
+        let scrollPosition = 0;
+
+        document.addEventListener("wheel", (event) => {
+          scrollPosition += event.deltaY;
+          scrollPosition = Math.max(
+            0,
+            Math.min(
+              scrollPosition,
+              document.body.scrollHeight - window.innerHeight
+            )
+          );
+          window.scrollTo(0, scrollPosition);
+        });
+      });
+    </script>
+  </body>
+</html>
